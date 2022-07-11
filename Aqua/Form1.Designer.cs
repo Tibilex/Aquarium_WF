@@ -28,9 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.FishMoveTimer = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Location = new System.Drawing.Point(0, 420);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(800, 30);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "ADD FISH";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.AddFish_Click);
             // 
             // Form1
             // 
@@ -39,6 +50,7 @@
             this.BackgroundImage = global::Aqua.Properties.Resources._5b01d815bf894;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -46,6 +58,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Timer FishMoveTimer;
+        private Button button1;
     }
 }
