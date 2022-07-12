@@ -4,7 +4,8 @@
     {
         private bool _moveHorizont = true;
         private int _fishHungry = 0;
-        System.Windows.Forms.Timer Timer = new System.Windows.Forms.Timer();
+        private System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
+
         public Form1 Form { get; set; }
 
         public FishUserControl()
@@ -16,7 +17,7 @@
 
             this.Load += FishUserControl_Load;
             fish1.Click += Fish1_Click;
-            Timer.Tick += Timer_Tick;
+            _timer.Tick += Timer_Tick;
         }
 
         private void Timer_Tick(object? sender, EventArgs e)
@@ -25,15 +26,16 @@
         }
         private void FishUserControl_Load(object? sender, EventArgs e)
         {
-            Timer.Interval = 10;
-            Timer.Start();
+            _timer.Interval = 10;
+            _timer.Start();
         }
         private void Fish1_Click(object? sender, EventArgs e)
         {
             _fishHungry = 0;
         }
-        public void FishMoving()
+        private async void FishMoving()
         {
+            await Task.Delay(1);
             if (_fishHungry >= 255)
             {
                 Form.Controls.Remove(this);
@@ -67,7 +69,7 @@
             }
 
         }
-        public void FishMoving2()
+        private void FishMoving2()
         {
             if (_fishHungry >= 255)
             {
@@ -102,10 +104,14 @@
             switch (fish1.id)
             {
                 case 1:
-                    FishMoving();
+                    ThreadStart fishmove = new ThreadStart(FishMoving);
+                    Thread thread = new Thread(fishmove);
+                    thread.Start();
                     break;
                 case 2:
-                    FishMoving2();
+                    ThreadStart fishmove2 = new ThreadStart(FishMoving2);
+                    Thread thread2 = new Thread(fishmove2);
+                    thread2.Start();
                     break;
                 default:
                     break;

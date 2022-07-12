@@ -30,6 +30,7 @@ namespace Aqua
             FishUserControl fish = new FishUserControl();
             fish.Form = this;
             this.Controls.Add(fish);
-        }       
+        }             
+       
     } 
 }
